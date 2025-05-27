@@ -1,0 +1,21 @@
+{
+  "name": "api-tests-postman-newman",
+  "version": "1.1.0",
+  "description": "Testes automatizados de API com Postman, Newman, múltiplos ambientes e relatórios HTML.",
+  "scripts": {
+    "test:dev": "cross-env ENV=dev node scripts/run_env.js",
+    "test:staging": "cross-env ENV=staging node scripts/run_env.js",
+    "test:prod": "cross-env ENV=prod node scripts/run_env.js",
+    "report": "start reports"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.0.5"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  },
+  "author": "Romulo Canella",
+  "license": "MIT"
+}

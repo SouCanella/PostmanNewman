@@ -1,0 +1,22 @@
+stages:
+  - test
+
+api_tests:
+  stage: test
+  image: node:18
+  script:
+    - npm install
+    - mkdir -p reports
+    - TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+    - npx newman run .postman/collections/api-main.postman_collection.json \
+        -e .postman/environments/dev.postman_environment.json \
+        -r htmlextra,json \
+        --reporter-htmlextra-export reports/report-${TIMESTAMP}.html \
+        --reporter-json-export reports/report-${TIMESTAMP}.json
+  artifacts:
+    paths:
+      - reports/
+    expire_in: 1 week
+  only:
+    - main
+    - merge_requests
